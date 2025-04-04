@@ -1,11 +1,13 @@
 ﻿// Screen Sound
 
-//segunda aula
+//terceira aula - listas e loops
 using System.Diagnostics.Tracing;
 
 string mensagemDeBoasVindas = "Boas vindas ao Screen Sound!";
 
-void ExibirMensagemDeBoasVindas()
+List<string> bandas = new List<string>(); //cria a lista das bandas
+
+void ExibirLogo()
 {
     Console.WriteLine(@" 
     ▒█▀▀▀█ █▀▀ █▀▀█ █▀▀ █▀▀ █▀▀▄ 　 ▒█▀▀▀█ █▀▀█ █░░█ █▀▀▄ █▀▀▄ 
@@ -16,6 +18,7 @@ void ExibirMensagemDeBoasVindas()
 
 void ExibirMenuDeOpcoes()
 {
+    ExibirLogo();
     Console.WriteLine("\nDigite 1 para registrar uma banda ou cantor");
     Console.WriteLine("Digite 2 para mostrar todas as bandas e cantores");
     Console.WriteLine("Digite 3 para avaliar uma banda");
@@ -30,10 +33,10 @@ void ExibirMenuDeOpcoes()
     {
         case 0:
             Console.WriteLine("você escolheu a opção " + opcaoEscolhidaNumerica);
+            break; 
+        case 1: RegistrarBandas();  //criou a funcao pra registrar as bandas
             break;
-        case 1: Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
-            break;
-        case 2: Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
+        case 2: MostrarBandasRegistradas();
             break;
         case 3: Console.WriteLine("Você escolheu a opção " + opcaoEscolhidaNumerica);
             break;
@@ -45,14 +48,39 @@ void ExibirMenuDeOpcoes()
     }
 }
 
-ExibirMensagemDeBoasVindas();
-ExibirMenuDeOpcoes();
-
-//exercicio prático 2
-//Criar uma variável chamada notaMedia e atribua um valor inteiro a ela.
-//Caso seu valor seja maior ou igual a 5, escreva na tela "Nota suficiente para aprovação".
-int media = 5;
-if (media >= 5)
-{
-    Console.WriteLine("Nota suficiente para aprovação");
+//case 1
+void RegistrarBandas() {
+    Console.Clear();
+    Console.WriteLine("----------------------");
+    Console.WriteLine("Registro de bandas");
+    Console.WriteLine("----------------------\n");
+    Console.Write("digite o nome da banda que deseja registrar: ");
+    string nomeBanda = Console.ReadLine();
+    bandas.Add(nomeBanda); //adiciona banda na lista
+    Console.WriteLine($"\nA banda {nomeBanda} foi registrada com sucesso!") //menciona uma variavel 
+    Thread.Sleep(2000); 
+    ExibirMenuDeOpcoes();
 }
+
+//case 2
+void MostrarBandasRegistradas(){
+    Console.Clear();
+    Console.WriteLine("----------------------");
+    Console.WriteLine("Exibindo as bandas registradas");
+    Console.WriteLine("----------------------\n");
+    //for (int i = 0; i < bandas.Count; i++) {    enquanto o contador for menor q o tamanho lista ele continua mostrando as bandas registradas
+        
+       // Console.WriteLine($"Banda: {bandas[i]}");
+    //}
+    foreach (string banda in bandas) 
+    {
+        Console.WriteLine($"Banda: {banda}");
+    }
+
+    Console.WriteLine("\nDigite uma tecla para voltar ao menu");
+    Console.ReadKey();
+    Console.Clear();
+    ExibirMenuDeOpcoes();
+}
+
+ExibirMenuDeOpcoes(); 
