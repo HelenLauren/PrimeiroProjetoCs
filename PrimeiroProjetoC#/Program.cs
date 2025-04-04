@@ -1,6 +1,6 @@
 ﻿// Screen Sound
 
-//quarta e última aula - dicionário e avaliaçao das bandas
+//quinta - desafio: fazer o case 4 media de avaliacoes
 using System.Diagnostics.Tracing;
 
 string mensagemDeBoasVindas = "Boas vindas ao Screen Sound!";
@@ -94,7 +94,7 @@ void AvaliarBandas()
     ExibirTituloOpcoes("Avliar Banda");
     Console.Write("Digite o nome da banda que deseja avaliar: ");
     string nomeBanda = Console.ReadLine();
-    if (bandasRegistradas.ContainKey(nomeBanda))
+    if (bandasRegistradas.ContainsKey(nomeBanda))
     {
         Console.Write($"Qual a nota que a banda {nomeBanda} merece? : ");
         int nota = int.Parse(Console.ReadLine()!);
@@ -113,6 +113,29 @@ void AvaliarBandas()
     }
 }
 
+//case 4
+void ExibirMediaBanda(){
+    Console.Clear();
+    ExibirTituloOpcoes("Média das Bandas");
+    Console.Write("Digite o nome da banda que deseja ver a média de notas")
+    string nomeBanda = Console.ReadLine()!;
+    if (bandasRegistradas.ContainsKey (nomeBanda)) 
+    {
+        List<int> notasDaBanda = bandasRegistradas[nomeBanda];
+        Console.WriteLine($"Média de notas da banda {nomeBanda}: {notasDaBanda.Average()} ");
+        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
+        Console.ReadKey();
+        Console.Clear();
+        ExibirMenuDeOpcoes();
+    } else 
+    {
+        Console.WriteLine($"\nA banda {nomeBanda} nao foi encontrada!");
+        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
+        Console.ReadKey();
+        Console.Clear();
+        ExibirMenuDeOpcoes();
+    }
+}
 //exibe os titulos de cada caso de acordo com o numero de caracteres no titulo
 void ExibirTituloOpcoes(string titulo){
     int quantidadeDeLetras = titulo.Length;
